@@ -19,9 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-SECRET_KEY = '96sxg)y-+ou0^d_5776a7rzitxtm+&5xcrqngns6y#+#fxxzdi'
+SECRET_KEY = "foo"
 
-DEBUG = False
+DEBUG = True
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'MyAPI',
     'frontend',
     'corsheaders',
 ]
@@ -77,17 +78,25 @@ WSGI_APPLICATION = 'DjangoAPI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE':'django.db.backends.postgresql',
-        'NAME':'sample_database_name',
-        'USER':'postgres',
-        'PASSWORD':'1234',
-        'PORT' : 5432,
-        'HOST': 'db',
-        'ATOMIC_REQUESTS': True,
-    },
-}
+if DEBUG is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+else :
+    DATABASES = {
+	    "default": {
+		"ENGINE": django.db.backends.postgresql,
+		"NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+		"USER": os.environ.get("SQL_USER", "user"),
+		"PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+		"HOST": os.environ.get("SQL_HOST", "localhost"),
+		"PORT": os.environ.get("SQL_PORT", "5432")
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

@@ -5,6 +5,41 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required(login_url='login')
+def list(request):
+    return render(request, 'frontend/list.html')
+
+
+@login_required(login_url='login')
+def orangepage(request):
+    return render(request, 'frontend/orangepage.html')
+
+
+@login_required(login_url='login')
+def pinkpage(request):
+    return render(request, 'frontend/pinkpage.html')
+
+
+@login_required(login_url='login')
+def yellowpage(request):
+    return render(request, 'frontend/yellowpage.html')
+
+
+@login_required(login_url='login')
+def redpage(request):
+    return render(request, 'frontend/redpage.html')
+
+
+@login_required(login_url='login')
+def bluepage(request):
+    return render(request, 'frontend/bluepage.html')
+
+
+@login_required(login_url='login')
+def greenpage(request):
+    return render(request, 'frontend/greenpage.html')
+
+
+@login_required(login_url='login')
 def home(request):
     return render(request, 'frontend/index.html')
 
