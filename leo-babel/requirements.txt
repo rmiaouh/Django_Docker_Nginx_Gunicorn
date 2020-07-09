@@ -1,0 +1,4 @@
+Flask==1.1.2
+spacy==2.2.4
+spacy-langdetect
+gunicorn==20.0.4

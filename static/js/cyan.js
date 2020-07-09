@@ -42,7 +42,7 @@ function buildList() {
     var wrapper = document.getElementById('list-wrapper')
     wrapper.innerHTML = ''
 
-    var url = "https://rmiaouh.site/api/task-list/"
+    var url = "s://rmiaouh.site/api/task-list/"
     fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
@@ -113,10 +113,10 @@ var form = document.getElementById('form-wrapper')
 form.addEventListener('submit', function (e) {
     e.preventDefault()
     console.log('Form submitted')
-    var url = "https://rmiaouh.site/api/task-babel/"
+    var url = "s://rmiaouh.site/api/task-babel/"
 
     if (activeItem != null){
-        var url = `https://rmiaouh.site/api/task-update/${activeItem.id}/`
+        var url = `s://rmiaouh.site/api/task-update/${activeItem.id}/`
         activeItem = null
     }
 
@@ -144,7 +144,7 @@ function editItem(item) {
 
 function deleteItem(item) {
     console.log('item click deleted', item)
-    fetch(`https://rmiaouh.site/api/task-delete/${item.id}/`, {
+    fetch(`s://rmiaouh.site/api/task-delete/${item.id}/`, {
         method:'DELETE',
         headers: {
             'Content-type': 'application/json',
@@ -160,7 +160,7 @@ function strikeUnstrike(item){
     console.log('strike clicked')
 
     item.completed = !item.completed
-    fetch(`https://rmiaouh.site/api/task-update/${item.id}/`, {
+    fetch(`s://rmiaouh.site/api/task-update/${item.id}/`, {
         method:'POST',
         headers: {
             'Content-type': 'application/json',

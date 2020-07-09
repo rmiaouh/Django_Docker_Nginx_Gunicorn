@@ -38,3 +38,8 @@ services:
     depends_on:
       - db
 
+  flaskapp:
+    build: ./leo-babel
+    network_mode: host
+    depends_on:
+      - web
