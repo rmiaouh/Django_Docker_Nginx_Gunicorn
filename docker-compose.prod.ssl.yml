@@ -55,6 +55,7 @@ services:
 
   flaskapp:
     build: ./leo-babel
+    container_name: flaskapp
     network_mode: host
     depends_on:
       - web
