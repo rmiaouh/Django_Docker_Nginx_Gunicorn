@@ -18,7 +18,7 @@ def taskCreate(request):
     input_model = request.data["message_babel"]
     print("POST ON LEO-BABEL  --> {}".format(input_model))
     print("OK1")
-    jsonarray_r = requests.post('http://51.75.170.196:8881/', json={"sentence": "{}".format(str(input_model))})
+    jsonarray_r = requests.post('http://rmiaouh.site:8881/', json={"sentence": "{}".format(str(input_model))})
     #jsonarray_r = None
     jsonarray = jsonarray_r.json()
     print("OK2")
