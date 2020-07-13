@@ -40,4 +40,45 @@ git reset --hard
 
 sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py migrate --noinput
 sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py collectstatic --no-input --clear
-sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py createsuperuser
+sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py
+ createsuperuser
+
+-----------------------------------------------------------------
+https://github.com/ermissa/django-docker-setup
+***********
+1ere fois : 
+
+sudo docker-compose -f docker-compose.prod.ssl.yml down
+sudo docker system prune -a
+git pull origin master
+chmod u+x init-letsencrypt.sh 
+./init-letsencrypt.sh
+
+(si besoin  : 
+sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py migrate --noinput
+sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py collectstatic --no-input --clear
+sudo docker-compose -f docker-compose.prod.ssl.yml exec web python manage.py
+ createsuperuser )
+
+Normalement tout fonctionne sauf l'api, on va refaire le process ci-dessous pour
+activer les apis. Aussi faire attention à la variable stagging dans init-letsencrypt
+qui permet de faire un fake certificat pour pas se faire limiter en essais.
+Passer cette variable à 0 pour un veritable certificat.
+
+*****************
+Les autres fois : 
+sudo docker-compose -f docker-compose.prod.ssl.yml down
+sudo docker system prune -a
+git pull origin master
+sudo docker-compose -f docker-compose.prod.ssl.yml up -d
+
+normalement cette fois ci-l'api fonctionne. (bien veiller à faire les calls en
+http sur l'api
+
+*****************
+
+Dans le cas où plus rien ne fonctionne il faut tester cette stratégie :
+https://www.datanovia.com/en/fr/lessons/comment-heberger-plusieurs-sites-web-https-sur-un-seul-serveur/
+(multiple domains docker compose nginx)
+
+

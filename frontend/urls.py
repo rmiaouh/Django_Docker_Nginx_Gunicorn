@@ -11,6 +11,6 @@ urlpatterns = [
     path('green/', views.greenpage, name="greenpage"),
     path('login/', views.loginPage, name="login"),
     path('', views.home, name="home"),
-    path('home-p2/', views.home2, name="home2"),
+    path('about/', views.about, name="about"),
     path('logout/', views.logoutUser, name="logout"),
 ]

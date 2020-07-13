@@ -45,8 +45,8 @@ def home(request):
 
 
 @login_required(login_url='login')
-def home2(request):
-    return render(request, 'frontend/home2.html')
+def about(request):
+    return render(request, 'frontend/about.html')
 
 
 def loginPage(request):
