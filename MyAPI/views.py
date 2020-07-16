@@ -49,10 +49,14 @@ def taskCreate_orange(request):
         prev_sentence = str(input_model)
         print(r.json())
         for i in range((len(r.json()['data']))):
+            print('ok1')
             dcolor = "#ec611b"
             dtext = (output_data_date['data'][i]['text'])
+            print('ok2')
             ddim = (output_data_date['data'][i]['dim'])
+            print('ok3')
             dvalue = (output_data_date['data'][i]['value']['value'])
+            print('ok4')
             replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em">
                     <b title="{dvalue}
                     ">{dtext}</b>
@@ -61,8 +65,10 @@ def taskCreate_orange(request):
             prev_sentence = re.sub(
                 r'\b' + str(dtext) + r'\b', replace_by, prev_sentence)
         jsonarray = prev_sentence
+        print('ok5')
         serializer = TaskSerializer_orange(data={'message_date': '{}'.format(
             input_model), 'dim_date': '{}'.format(ddim), 'text_date': '{}'.format(dtext), 'value_date': '{}'.format(dvalue), 'color_date': '{}'.format(dcolor), 'output_date': '{}'.format(prev_sentence)})
+        print('ok6')
         if serializer.is_valid():
             serializer.save()
             print('save1')
