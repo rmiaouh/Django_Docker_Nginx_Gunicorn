@@ -5,10 +5,13 @@ from . import views
 
 urlpatterns = [
     path('task-babel/', views.taskCreate, name="task-create"),
+    path('task-orange/', views.taskCreate_orange, name="task-create-orange"),
 
 
 
     path('task-list/', views.taskList, name="task-list"),
+    path('task-list-orange/', views.taskList_orange, name="task-list-orange"),
+
 
 
 

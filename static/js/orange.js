@@ -42,7 +42,7 @@ function buildList() {
     var wrapper = document.getElementById('list-wrapper')
     wrapper.innerHTML = ''
 
-    var url = "http://127.0.0.1:8000/api/task-list-orange/"
+    var url = "https://rmiaouh.site/api/task-list-orange/"
     fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
@@ -94,10 +94,10 @@ var form = document.getElementById('form-wrapper')
 form.addEventListener('submit', function (e) {
     e.preventDefault()
     console.log('Form submitted')
-    var url = "http://127.0.0.1:8000/api/task-orange/"
+    var url = "https://rmiaouh.site/api/task-orange/"
 
     if (activeItem != null){
-        var url = `http://127.0.0.1:8000/api/task-update/${activeItem.id}/`
+        var url = `https://rmiaouh.site/api/task-update/${activeItem.id}/`
         activeItem = null
     }
 
@@ -125,7 +125,7 @@ function editItem(item) {
 
 function deleteItem(item) {
     console.log('item click deleted', item)
-    fetch(`http://127.0.0.1:8000/api/task-delete-orange/${item.id}/`, {
+    fetch(`https://rmiaouh.site/api/task-delete-orange/${item.id}/`, {
         method:'DELETE',
         headers: {
             'Content-type': 'application/json',
@@ -141,7 +141,7 @@ function strikeUnstrike(item){
     console.log('strike clicked')
 
     item.completed = !item.completed
-    fetch(`http://127.0.0.1:8000/api/task-update/${item.id}/`, {
+    fetch(`https://rmiaouh.site/api/task-update/${item.id}/`, {
         method:'POST',
         headers: {
             'Content-type': 'application/json',
