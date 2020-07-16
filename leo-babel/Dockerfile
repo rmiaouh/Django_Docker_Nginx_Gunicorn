@@ -11,4 +11,4 @@ RUN pip3 install -r requirements.txt
 WORKDIR /opt/
 RUN python3 -m spacy download en
 
-CMD ["gunicorn3", "-b", "0.0.0.0:8081", "app:app", "--workers=1", "--timeout=300"]
+CMD ["gunicorn3", "-b", "0.0.0.0:8081", "app:app", "--workers=3", "--timeout=300"]

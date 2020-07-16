@@ -47,11 +47,11 @@ def taskCreate_orange(request):
         r = requests.post('https://rmiaouh.site:8082/',
                           json={'sentence': str(input_model)})
         prev_sentence = str(input_model)
-        for i in range((len(r.json()['msg']))):
+        for i in range((len(r.json()['data']))):
             dcolor = "#ec611b"
-            dtext = (output_data_date['msg'][i]['text'])
-            ddim = (output_data_date['msg'][i]['dim'])
-            dvalue = (output_data_date['msg'][i]['value']['value'])
+            dtext = (output_data_date['data'][i]['text'])
+            ddim = (output_data_date['data'][i]['dim'])
+            dvalue = (output_data_date['data'][i]['value']['value'])
             replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em">
                     <b title="{dvalue}
                     ">{dtext}</b>
