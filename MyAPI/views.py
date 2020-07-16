@@ -44,7 +44,7 @@ def taskCreate_orange(request):
     input_model = request.data["message_orange"]
     print("POST ON LEO-ORANGE  --> {}".format(input_model))
     try:
-        r = requests.post('https://rmiaouh.site:8082/',
+        r = requests.post('http://rmiaouh.site:8082/',
                           json={'sentence': str(input_model)})
         prev_sentence = str(input_model)
         print(r.json())
