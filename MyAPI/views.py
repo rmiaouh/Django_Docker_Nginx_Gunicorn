@@ -51,11 +51,11 @@ def taskCreate_orange(request):
         for i in range((len(r.json()['data']))):
             print('ok1')
             dcolor = "#ec611b"
-            dtext = (output_data_date['data'][i]['text'])
+            dtext = (r.json()['data'][i]['text'])
             print('ok2')
-            ddim = (output_data_date['data'][i]['dim'])
+            ddim = (r.json()['data'][i]['dim'])
             print('ok3')
-            dvalue = (output_data_date['data'][i]['value']['value'])
+            dvalue = (r.json()['data'][i]['value']['value'])
             print('ok4')
             replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em">
                     <b title="{dvalue}
