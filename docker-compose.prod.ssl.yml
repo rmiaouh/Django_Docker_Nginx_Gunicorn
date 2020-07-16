@@ -53,8 +53,14 @@ services:
     depends_on:
       - db
 
-  flaskapp:
+  leo_babel:
     build: ./leo-babel
+    network_mode: host
+    depends_on:
+      - web
+
+  leo_date:
+    build: ./leo-date
     network_mode: host
     depends_on:
       - web
