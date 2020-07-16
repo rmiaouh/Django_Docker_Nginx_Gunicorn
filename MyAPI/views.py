@@ -47,6 +47,7 @@ def taskCreate_orange(request):
         r = requests.post('https://rmiaouh.site:8082/',
                           json={'sentence': str(input_model)})
         prev_sentence = str(input_model)
+        print(r.json())
         for i in range((len(r.json()['data']))):
             dcolor = "#ec611b"
             dtext = (output_data_date['data'][i]['text'])
@@ -64,6 +65,8 @@ def taskCreate_orange(request):
             input_model), 'dim_date': '{}'.format(ddim), 'text_date': '{}'.format(dtext), 'value_date': '{}'.format(dvalue), 'color_date': '{}'.format(dcolor), 'output_date': '{}'.format(prev_sentence)})
         if serializer.is_valid():
             serializer.save()
+            print('save1')
+        print("return 1")
         return JsonResponse(jsonarray, safe=False)
     except:
         serializer = TaskSerializer_orange(data={'message_date': '{}'.format(
@@ -71,6 +74,8 @@ def taskCreate_orange(request):
             input_model)})
         if serializer.is_valid():
             serializer.save()
+            print('save2')
+        print("return 2")
         return JsonResponse(input_model, safe=False)
 
 
