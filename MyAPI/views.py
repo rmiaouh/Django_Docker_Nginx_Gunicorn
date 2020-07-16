@@ -45,7 +45,7 @@ def taskCreate_orange(request):
     print("POST ON LEO-ORANGE  --> {}".format(input_model))
     try:
         r = requests.post('https://rmiaouh.site:8082/',
-                          json={'phrase': str(input_model)})
+                          json={'sentence': str(input_model)})
         prev_sentence = str(input_model)
         for i in range((len(r.json()['msg']))):
             dcolor = "#ec611b"
