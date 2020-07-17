@@ -15,14 +15,11 @@ def get_health_status():
 
 @app.route('/', methods=['POST'])
 def parse_sentence():
-    print("ok1")
+    print("ok")
     sentence = request.get_json().get("sentence")
-    print("ok2")
     output_data = model.get_date_from_sentence(sentence)
-    print("ok3")
 
     return jsonify(data=output_data)
-
 
 if __name__ == "__main__":
     app.run()
