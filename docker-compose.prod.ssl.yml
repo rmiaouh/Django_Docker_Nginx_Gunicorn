@@ -64,3 +64,9 @@ services:
     network_mode: host
     depends_on:
       - web
+
+  leo_ortho:
+    build: ./leo-ortho
+    network_mode: host
+    depends_on:
+      - web
