@@ -60,7 +60,7 @@ services:
       - web
 
   leo_date:
-    build: ./leo-date
+    build: ./leo-ortho
     network_mode: host
     depends_on:
       - web
