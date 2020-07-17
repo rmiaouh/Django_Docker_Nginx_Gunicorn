@@ -21,7 +21,6 @@ def get_health_status():
 @app.route('/', methods=['POST'])
 def parse_sentence():
     sentence = request.get_json().get("sentence")
-
     output_data = model.get_language_from_sentence(sentence)
 
     return jsonify(output_data)
