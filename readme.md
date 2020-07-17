@@ -33,6 +33,7 @@ sudo docker builder prune
 
 docker-compose -f docker-compose.prod.yml build -d
 GO INSIDE DOCKER COMPOSE CONTAINER :
+sudo docker ps
 sudo docker exec -ti 08f156938cc2 sh
 (08f156938cc2 = ID du container)
 
