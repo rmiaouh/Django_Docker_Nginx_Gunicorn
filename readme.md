@@ -83,3 +83,8 @@ https://www.datanovia.com/en/fr/lessons/comment-heberger-plusieurs-sites-web-htt
 (multiple domains docker compose nginx)
 
 
+**************
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker rmi $(docker images -q)
+
