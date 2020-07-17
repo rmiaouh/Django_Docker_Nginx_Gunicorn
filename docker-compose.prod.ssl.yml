@@ -59,7 +59,7 @@ services:
     depends_on:
       - web
 
-  leo_date:
+  leo_ortho:
     build: ./leo-ortho
     network_mode: host
     depends_on:
