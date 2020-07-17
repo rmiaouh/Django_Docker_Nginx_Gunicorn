@@ -12,8 +12,11 @@ class Model:
     sym_spell = None
 
     def __init__(self, language):
+        import pathlib
+        print(pathlib.Path(__file__).parent.absolute())
+        print(pathlib.Path().absolute())
         self.sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
-        dictionary_path = "./opt/{}_50k.txt".format(str("fr"))
+        dictionary_path = "./{}_50k.txt".format(str("fr"))
         f = open(dictionary_path, "r")
         print(f.read())
         self.sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
