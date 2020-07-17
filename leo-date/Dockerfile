@@ -14,7 +14,7 @@ COPY flaskapp /opt/
 RUN pip3 install -r requirements.txt
 WORKDIR /opt/
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-CMD ["gunicorn3", "-b", "0.0.0.0:8082", "app:app", "--workers=1", "--timeout=300"]
+CMD ["gunicorn3", "-b", "0.0.0.0:8080", "app:app", "--workers=1", "--timeout=300"]
 
 
 
