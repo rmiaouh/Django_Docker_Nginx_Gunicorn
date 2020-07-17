@@ -2,11 +2,9 @@ from flask import Flask, jsonify, request, render_template, make_response
 from Model import Model
 import os
 
-model_language = 'fr'
-model = Model(model_language)
+model = Model("fr")
 
 app = Flask(__name__)
-
 
 @app.route('/health_status', methods=['GET'])
 def get_health_status():
