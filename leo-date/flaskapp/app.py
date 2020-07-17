@@ -2,8 +2,7 @@ from flask import Flask, jsonify, request, render_template, make_response
 from Model import Model
 import os
 
-model_language = 'fr'
-model = Model(model_language)
+model = Model()
 
 app = Flask(__name__)
 
@@ -16,7 +15,8 @@ def get_health_status():
 @app.route('/', methods=['POST'])
 def parse_sentence():
     print("ok")
-    sentence = request.get_json().get("sentence")
+    #sentence = request.get_json().get("sentence")
+    sentence = "je veux venir demain"
     output_data = model.get_date_from_sentence(sentence)
 
     return jsonify(data=output_data)

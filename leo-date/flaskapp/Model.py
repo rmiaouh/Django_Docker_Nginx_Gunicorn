@@ -4,7 +4,7 @@ from pprint import pprint
 class Model:
     duckling_model = None
 
-    def __init__(self, language):
+    def __init__(self):
         self.duckling_model = duckling.DucklingWrapper(language='fr')
 
 
