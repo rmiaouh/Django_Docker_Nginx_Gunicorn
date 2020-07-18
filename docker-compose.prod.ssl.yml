@@ -86,3 +86,9 @@ services:
     network_mode: host
     depends_on:
       - web
+
+  leo_rasa:
+    build: ./leo-rasa
+    network_mode: host
+    depends_on:
+      - web

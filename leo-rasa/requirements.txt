@@ -1,0 +1,4 @@
+rasa==1.10.6
+pandas
+Flask
+gunicorn==20.0.4
