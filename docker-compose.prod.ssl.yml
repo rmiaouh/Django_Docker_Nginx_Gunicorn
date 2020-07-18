@@ -70,3 +70,9 @@ services:
     network_mode: host
     depends_on:
       - web
+
+  leo_feel:
+    build: ./leo-feel
+    network_mode: host
+    depends_on:
+      - web
