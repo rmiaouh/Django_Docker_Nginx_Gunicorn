@@ -1,4 +1,7 @@
-rasa==1.10.6
-pandas
+rasa~=1.10.1
+spacy
+sklearn_crfsuite
+tokenizer
+pandas>=1.0
 Flask
 gunicorn==20.0.4
