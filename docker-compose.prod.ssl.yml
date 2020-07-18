@@ -76,3 +76,9 @@ services:
     network_mode: host
     depends_on:
       - web
+
+  leo_lieux:
+    build: ./leo-lieux
+    network_mode: host
+    depends_on:
+      - web

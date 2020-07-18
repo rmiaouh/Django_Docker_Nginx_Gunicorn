@@ -1,0 +1,16 @@
+allee
+boulevard
+impasse
+lotissement
+place
+rocade
+domaine
+clos
+pres
+za
+ruelle
+chaussee
+rue
+avenue
+route
+chemin

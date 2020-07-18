@@ -1,0 +1,6 @@
+matplotlib
+numpy
+pandas
+spacy==2.0.18
+Flask
+gunicorn==20.0.4
