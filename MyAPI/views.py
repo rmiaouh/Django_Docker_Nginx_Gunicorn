@@ -233,7 +233,7 @@ def taskCreate_green(request):
                 print(items)
                 print("ok3")
                 print(data_to_dic[datas_lieux][count])
-                dtext = (data_to_dic[datas_lieux][count]["value"])
+                dtext = (data_to_dic[datas_lieux][count])
                 print("ok4")
                 print(dtext)
                 ddim = datas_lieux
