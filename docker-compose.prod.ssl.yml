@@ -51,8 +51,8 @@ services:
     depends_on:
       - db
 
-  leo_lieux:
-    build: ./leo-lieux
+  leo_mar:
+    build: ./leo-mar
     network_mode: host
     depends_on:
       - web
