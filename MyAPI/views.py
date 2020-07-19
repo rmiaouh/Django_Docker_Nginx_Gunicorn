@@ -10,7 +10,29 @@ from .apps import *
 import requests
 import re
 import json
+import unicodedata
 
+
+def strip_accents(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s)
+                   if unicodedata.category(c) != 'Mn')
+
+
+def remove_stopwords_str_lieux(str_data):
+    temp = open("./static/assets/blacklist.txt", r).readlines()
+    # split sentence in list
+    wordsFiltered = []
+    str_data = str(str_data)
+    str_data_list = str_data.split()
+    # check if words in list are in the banwords
+
+    for w in str_data_list:
+
+        if w not in temp:
+            wordsFiltered.append(w)
+    # merge the list in str format
+    wordsFiltered = (" ").join(wordsFiltered)
+    return wordsFiltered
 
 @api_view(['POST'])
 def taskCreate(request):
