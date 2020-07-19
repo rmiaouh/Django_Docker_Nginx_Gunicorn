@@ -51,44 +51,9 @@ services:
     depends_on:
       - db
 
-  leo_babel:
-    build: ./leo-babel
-    network_mode: host
-    depends_on:
-      - web
-
-  leo_date:
-    build: ./leo-date
-    network_mode: host
-    depends_on:
-      - web
-
   leo_ortho:
     build: ./leo-ortho
     network_mode: host
     depends_on:
       - web
 
-  leo_feel:
-    build: ./leo-feel
-    network_mode: host
-    depends_on:
-      - web
-
-  leo_lieux:
-    build: ./leo-lieux
-    network_mode: host
-    depends_on:
-      - web
-
-  leo_mar:
-    build: ./leo-mar
-    network_mode: host
-    depends_on:
-      - web
-
-  leo_rasa:
-    build: ./leo-rasa
-    network_mode: host
-    depends_on:
-      - web

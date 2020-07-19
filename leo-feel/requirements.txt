@@ -1,3 +1,4 @@
 pandas
 requests
 Flask
+gunicorn==20.0.4

@@ -29,7 +29,6 @@ services:
     depends_on:
       - web
 
-
   certbot:
     image: certbot/certbot
     restart: unless-stopped
@@ -37,7 +36,6 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 5d & wait $${!}; done;'"
-
 
   web:
     build:
@@ -53,8 +51,44 @@ services:
     depends_on:
       - db
 
+  leo_babel:
+    build: ./leo-babel
+    network_mode: host
+    depends_on:
+      - web
+
   leo_date:
     build: ./leo-date
+    network_mode: host
+    depends_on:
+      - web
+
+  leo_ortho:
+    build: ./leo-ortho
+    network_mode: host
+    depends_on:
+      - web
+
+  leo_feel:
+    build: ./leo-feel
+    network_mode: host
+    depends_on:
+      - web
+
+  leo_lieux:
+    build: ./leo-lieux
+    network_mode: host
+    depends_on:
+      - web
+
+  leo_mar:
+    build: ./leo-mar
+    network_mode: host
+    depends_on:
+      - web
+
+  leo_rasa:
+    build: ./leo-rasa
     network_mode: host
     depends_on:
       - web

@@ -85,6 +85,59 @@ def taskCreate_orange(request):
         return JsonResponse(input_model, safe=False)
 
 
+@api_view(['POST'])
+def taskCreate_yellow(request):
+    data_request = request.data
+    input_model = request.data["message_yellow"]
+    print("POST ON LEO-YELLOW  --> {}".format(input_model))
+
+    try:
+        r = requests.post('http://rmiaouh.site:8083/',
+                          json={'sentence': str(input_model)})
+        # display suggestion term, edit distance, and term frequency
+        prev_sentence = str(input_model)
+        output_data_ortho = r.json()['data']
+        dcolor = "#C9991E"
+        dtext = str(output_data_ortho)
+        ddim = input_model
+        dvalue = "Phrase corrigée"
+        replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em">
+            <b title="{dvalue}
+            ">{dtext}</b>
+            <span style="font-size: 0.8em; font-weight: bold; line-height: 3; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem" title="Phrase initiale">{ddim}</span>
+            </mark>""".format(dcolor=dcolor, dtext=dtext, ddim=ddim, dvalue=dvalue)
+        prev_sentence = re.sub(r'\b' + str(ddim) + r'\b',
+                               replace_by, prev_sentence)
+        jsonarray = prev_sentence
+        print("T3")
+        serializer = TaskSerializer_yellow(data={'message_ortho': '{}'.format(
+            output_data_ortho), 'output_ortho': '{}'.format(
+            prev_sentence)})
+        if serializer.is_valid() and (str(input_model).strip() != str(output_data_ortho.strip())):
+            print("valid")
+            serializer.save()
+            return JsonResponse(jsonarray, safe=False)
+
+        else:
+            print("else valid")
+            serializer = TaskSerializer_yellow(data={'message_ortho': '{}'.format(
+            output_data_ortho), 'output_ortho': '{}'.format(
+            input_model)})
+            if serializer.is_valid():
+                serializer.save()
+            return JsonResponse(input_model, safe=False)
+
+    except Exception as e:
+        print(str(e))
+        print("fail ortho")
+        serializer = TaskSerializer_yellow(data={'message_ortho': '{}'.format(
+            input_model), 'output_ortho': '{}'.format(
+            input_model)})
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse(input_model, safe=False)
+
+
 @api_view(['GET'])
 def taskList(request):
     tasks = Task.objects.all().order_by('-id')
