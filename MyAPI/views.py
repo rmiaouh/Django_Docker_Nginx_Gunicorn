@@ -19,7 +19,7 @@ def strip_accents(s):
 
 
 def remove_stopwords_str_lieux(str_data):
-    temp = open("./static/assets/blacklist.txt", r).readlines()
+    temp = open("./static/assets/blacklist.txt", 'r').readlines()
     # split sentence in list
     wordsFiltered = []
     str_data = str(str_data)
