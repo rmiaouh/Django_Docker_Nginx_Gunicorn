@@ -185,6 +185,56 @@ def taskCreate_pink(request):
             serializer.save()
     return JsonResponse(input_model, safe=False)
 
+@api_view(['POST'])
+def taskCreate_green(request):
+    data_request = request.data
+    input_model = request.data["message_green"]
+    input_model = remove_stopwords_str_lieux(input_model)
+    # here we remove accents
+    input_model = strip_accents(input_model.lower())
+    print("POST ON LEO-GREEN  --> {}".format(input_model))
+
+    try:
+        r = requests.post('http://rmiaouh.site:8085/',
+                          json={'sentence': str(input_model), 'language': "fr", 'bot_id': "115"})      
+        output_data_lieux = r.json()['data']
+        prev_sentence = str(input_model)
+        data_to_dic = json.loads(output_data_lieux)
+        for datas_lieux in data_to_dic :
+            dcolor = "#065f2d"
+            for count, items in enumerate(data_to_dic[datas_lieux]):
+                dtext = (data_to_dic[datas_lieux][count]["value"])
+                print(dtext)
+                ddim = datas_lieux
+                dvalue = ""
+                replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; color: white">
+                        <b title="{dvalue}
+                        ">{dtext}</b>
+                        <span style="font-size: 0.8em; font-weight: bold; line-height: 3; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem" title="Free Web tutorials">{ddim}</span>
+                    </mark>""".format(dcolor=dcolor, dtext=dtext, ddim=ddim, dvalue=dvalue)
+                prev_sentence = re.sub(
+                    r'\b' + str(dtext) + r'\b', replace_by, prev_sentence)
+        jsonarray = prev_sentence
+        print("GOGO")
+        if len(data_to_dic) == 0:
+            serializer = TaskSerializer_green(data={'message_lieux': '{}'.format(
+                input_model), 'output_lieux': '{}'.format(input_model)})
+        else:
+            serializer = TaskSerializer_green(data={'message_lieux': '{}'.format(
+                input_model), 'output_lieux': '{}'.format(prev_sentence)})
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse(jsonarray, safe=False)
+    except Exception as e:
+        print(str(e))
+        serializer = TaskSerializer_green(data={'message_lieux': '{}'.format(
+            input_model), 'output_lieux': '{}'.format(
+            input_model)})
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse(input_model, safe=False)
+
+    return JsonResponse(input_model, safe=False)
 
 @api_view(['GET'])
 def taskList(request):
