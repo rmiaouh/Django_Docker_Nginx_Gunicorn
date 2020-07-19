@@ -270,7 +270,6 @@ def taskCreate_blue(request):
     try:
         r = requests.post('http://rmiaouh.site:8086/',
                           json={'sentence': str(input_model), 'language': "fr", 'bot_id': "115"})  
-        output_data_mar = model_api_mar(str(input_model))
         prev_sentence = str(input_model)
         data_to_dic = r.json()['data']
         for datas_mar in data_to_dic:
