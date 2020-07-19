@@ -277,11 +277,10 @@ def taskCreate_blue(request):
             dcolor = "#3f56bd"
             #dtext = (data_to_dic[datas_mar][0]["word"])
             print("ok1")
-            print(data_to_dic[datas_mar])
-            dtext = (data_to_dic[datas_mar][0])
+            dtext = datas_mar["word"]
             print("ok2")
-            ddim = datas_mar
-            dvalue = "Similarity % : {} | Id number : {}".format(data_to_dic[datas_mar][0]["similarity %"],data_to_dic[datas_mar][0]["id"][0])
+            ddim = datas_mar["theme"]
+            dvalue = "Similarity % : {} | Id number : {}".format(datas_mar["similarity %"],datas_mar["id"])
             replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; color:white">
                     <b title="{dvalue}
                     ">{dtext}</b>
