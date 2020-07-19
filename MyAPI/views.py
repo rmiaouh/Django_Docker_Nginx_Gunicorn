@@ -273,9 +273,13 @@ def taskCreate_blue(request):
         prev_sentence = str(input_model)
         data_to_dic = r.json()['data']
         for datas_mar in data_to_dic:
+            print(datas_mar)
             dcolor = "#3f56bd"
             #dtext = (data_to_dic[datas_mar][0]["word"])
+            print("ok1")
+            print(data_to_dic[datas_mar])
             dtext = (data_to_dic[datas_mar][0])
+            print("ok2")
             ddim = datas_mar
             dvalue = "Similarity % : {} | Id number : {}".format(data_to_dic[datas_mar][0]["similarity %"],data_to_dic[datas_mar][0]["id"][0])
             replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; color:white">
