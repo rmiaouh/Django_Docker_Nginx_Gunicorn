@@ -219,9 +219,9 @@ def taskCreate_green(request):
     try:
         r = requests.post('http://rmiaouh.site:8085/',
                           json={'sentence': str(input_model), 'language': "fr", 'bot_id': "115"})      
-        output_data_lieux = r.json()['data']
+        #output_data_lieux = r.json()['data']
         prev_sentence = str(input_model)
-        data_to_dic = json.loads(output_data_lieux)
+        data_to_dic = json.loads(r.json())
         for datas_lieux in data_to_dic :
             dcolor = "#065f2d"
             for count, items in enumerate(data_to_dic[datas_lieux]):
