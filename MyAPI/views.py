@@ -227,8 +227,12 @@ def taskCreate_green(request):
         for datas_lieux in data_to_dic :
             dcolor = "#065f2d"
             print("okbis")
+            print(data_lieux)
             for count, items in enumerate(data_to_dic[datas_lieux]):
+                print(count)
+                print(items)
                 print("ok3")
+                print(data_to_dic[datas_lieux][count])
                 dtext = (data_to_dic[datas_lieux][count]["value"])
                 print("ok4")
                 print(dtext)
