@@ -137,6 +137,54 @@ def taskCreate_yellow(request):
             serializer.save()
         return JsonResponse(input_model, safe=False)
 
+@api_view(['POST'])
+def taskCreate_pink(request):
+    data_request = request.data
+    input_model = request.data["message_pink"]
+    print("POST ON LEO-PINK  --> {}".format(input_model))
+
+    try:
+        r = requests.post('http://rmiaouh.site:8084/',
+                          json={'sentence': str(input_model), 'language': "fr", 'bot_id': "115"})
+        output_data_feel = r.json()['data']
+        prev_sentence = str(input_model)
+        tendance = "NC"
+        dcolor = "rgb(170, 70, 132)"
+        dtext = str(input_model)
+        print(float(output_data_feel['compound']))
+        if float(output_data_feel['compound']) <= 0.15 and float(output_data_feel['compound']) >= -0.15:
+            tendance = "NEUTRE"
+        elif float(output_data_feel['compound']) > 0.20:
+            tendance = "POSITIVE"
+        elif float(output_data_feel['compound']) < -0.20:
+            tendance = "NEGATIVE"
+        print(tendance)
+        ddim = tendance
+        dvalue = "{}".format(output_data_feel)
+        prev_sentence = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; color: white">
+            <b title="{dvalue}
+            ">{dtext}</b>
+            <span style="font-size: 0.8em; font-weight: bold; line-height: 3; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem;" title="Tendance">{ddim}</span>
+            </mark>""".format(dcolor=dcolor, dtext=dtext, ddim=ddim, dvalue=dvalue)
+        jsonarray = prev_sentence
+        print("T3")
+        serializer = TaskSerializer_pink(data={'message_feel': '{}'.format(
+            input_model), 'output_feel': '{}'.format(
+            prev_sentence)})
+        if serializer.is_valid():
+            print("valid")
+            serializer.save()
+            return JsonResponse(jsonarray, safe=False)
+    except Exception as e:
+        print(str(e))
+        serializer = TaskSerializer_pink(data={'message_feel': '{}'.format(
+            output_data_feel), 'output_feel': '{}'.format(
+            prev_sentence)})
+        if serializer.is_valid():
+            print(" not valid")
+            serializer.save()
+    return JsonResponse(input_model, safe=False)
+
 
 @api_view(['GET'])
 def taskList(request):

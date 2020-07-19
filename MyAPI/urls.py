@@ -7,12 +7,13 @@ urlpatterns = [
     path('task-babel/', views.taskCreate, name="task-create"),
     path('task-orange/', views.taskCreate_orange, name="task-create-orange"),
     path('task-yellow/', views.taskCreate_yellow, name="task-create-yellow"),
+    path('task-pink/', views.taskCreate_pink, name="task-create-pink"),
 
 
     path('task-list/', views.taskList, name="task-list"),
     path('task-list-orange/', views.taskList_orange, name="task-list-orange"),
     path('task-list-yellow/', views.taskList_yellow, name="task-list-yellow"),
-
+    path('task-list-pink/', views.taskList_pink, name="task-list-pink"),
 
 
 

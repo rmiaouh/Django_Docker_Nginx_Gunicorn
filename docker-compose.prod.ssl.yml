@@ -51,8 +51,8 @@ services:
     depends_on:
       - db
 
-  leo_ortho:
-    build: ./leo-ortho
+  leo_feel:
+    build: ./leo-feel
     network_mode: host
     depends_on:
       - web
