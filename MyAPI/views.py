@@ -221,11 +221,16 @@ def taskCreate_green(request):
                           json={'sentence': str(input_model), 'language': "fr", 'bot_id': "115"})      
         #output_data_lieux = r.json()['data']
         prev_sentence = str(input_model)
-        data_to_dic = json.loads(r.json())
+        print("ok1")
+        data_to_dic = r.json()['data']
+        print("ok2")
         for datas_lieux in data_to_dic :
             dcolor = "#065f2d"
+            print("okbis")
             for count, items in enumerate(data_to_dic[datas_lieux]):
+                print("ok3")
                 dtext = (data_to_dic[datas_lieux][count]["value"])
+                print("ok4")
                 print(dtext)
                 ddim = datas_lieux
                 dvalue = ""
