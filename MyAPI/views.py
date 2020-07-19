@@ -309,6 +309,54 @@ def taskCreate_blue(request):
         return JsonResponse(input_model, safe=False)
 
 
+@api_view(['POST'])
+def taskCreate_red(request):
+    data_request = request.data
+    input_model = request.data["message_red"]
+    print("POST ON LEO-RED  --> {}".format(input_model))
+
+    try:
+        r = requests.post('http://rmiaouh.site:8087/',
+                          json={'sentence': str(input_model), 'language': "fr", 'bot_id': "115"})  
+        output_data_rasa = (r.json()['data'])
+        print("GOGO1")
+        prev_sentence = str(input_model)
+        for i in range((len(output_data_rasa['entities']))):
+            dcolor = "#c53838"
+            dtext = (output_data_rasa['entities'][i]['value'])
+            ddim = (output_data_rasa['entities'][i]['entity'])
+            dvalue = (output_data_rasa['entities'][i]['confidence_entity'])
+            replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em">
+                    <b title="{dvalue}
+                    ">{dtext}</b>
+                    <span style="font-size: 0.8em; font-weight: bold; line-height: 3; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem" title="Free Web tutorials">{ddim}</span>
+                </mark>""".format(dcolor=dcolor, dtext=dtext, ddim=ddim, dvalue=dvalue)
+            prev_sentence = re.sub(
+                r'\b' + str(dtext) + r'\b', replace_by, prev_sentence)
+        jsonarray = prev_sentence
+        print("GOGO")
+        if len(output_data_rasa['entities']) == 0:
+            serializer = TaskSerializer_red(data={'message_rasa': '{}'.format(
+                input_model), 'intent_rasa': '{}'.format(str(output_data_rasa['intent']['name'])),
+                'output_rasa': '{}'.format(prev_sentence)})
+        else:
+            serializer = TaskSerializer_red(data={'message_rasa': '{}'.format(
+                input_model), 'ranking_rasa': '{}'.format(ddim),
+                'intent_rasa': '{}'.format(str(output_data_rasa['intent']['name'])),
+                'entity_rasa': '{}'.format(dtext), 'confidence_rasa': '{}'.format(dvalue),
+                'color_rasa': '{}'.format(dcolor), 'output_rasa': '{}'.format(prev_sentence)})
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse(jsonarray, safe=False)
+    except:
+        serializer = TaskSerializer_red(data={'message_rasa': '{}'.format(
+            input_model), 'output_rasa': '{}'.format(
+            input_model)})
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse(input_model, safe=False)
+
+
 @api_view(['GET'])
 def taskList(request):
     tasks = Task.objects.all().order_by('-id')

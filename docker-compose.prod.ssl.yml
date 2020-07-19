@@ -51,8 +51,8 @@ services:
     depends_on:
       - db
 
-  leo_mar:
-    build: ./leo-mar
+  leo_rasa:
+    build: ./leo-rasa
     network_mode: host
     depends_on:
       - web

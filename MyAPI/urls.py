@@ -10,6 +10,7 @@ urlpatterns = [
     path('task-pink/', views.taskCreate_pink, name="task-create-pink"),
     path('task-green/', views.taskCreate_green, name="task-create-green"),
     path('task-blue/', views.taskCreate_blue, name="task-create-blue"),
+    path('task-red/', views.taskCreate_red, name="task-create-red"),
 
 
     path('task-list/', views.taskList, name="task-list"),
@@ -18,7 +19,7 @@ urlpatterns = [
     path('task-list-pink/', views.taskList_pink, name="task-list-pink"),
     path('task-list-green/', views.taskList_green, name="task-list-green"),
     path('task-list-blue/', views.taskList_blue, name="task-list-blue"),
-
+    path('task-list-red/', views.taskList_red, name="task-list-red"),
 
 
     path('task-delete/<str:pk>/', views.taskDelete, name="task-delete"),
