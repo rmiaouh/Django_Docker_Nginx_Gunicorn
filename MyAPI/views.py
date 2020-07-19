@@ -280,7 +280,7 @@ def taskCreate_blue(request):
             dtext = datas_mar["word"]
             print("ok2")
             ddim = datas_mar["theme"]
-            dvalue = "Similarity % : {} | Id number : {}".format(datas_mar["similarity %"],datas_mar["id"])
+            dvalue = "Similarity % : {} | Id number : {}".format(datas_mar["similarity"],datas_mar["id"])
             replace_by = """<mark class="entity" style="background: {dcolor}; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; color:white">
                     <b title="{dvalue}
                     ">{dtext}</b>
