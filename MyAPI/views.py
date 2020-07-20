@@ -286,7 +286,7 @@ def taskCreate_blue(request):
         serializer = TaskSerializer_blue(data={'message_mar': '{}'.format(
             output_data_mar), 'output_mar': '{}'.format(
             prev_sentence)})
-        if serializer.is_valid() and (str(input_model).strip() != str(output_data_mar.strip())):
+        if serializer.is_valid():
             print("valid")
             serializer.save()
             return JsonResponse(jsonarray, safe=False)
