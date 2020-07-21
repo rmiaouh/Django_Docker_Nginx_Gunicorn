@@ -38,15 +38,21 @@ def bluepage(request):
 def greenpage(request):
     return render(request, 'frontend/greenpage.html')
 
+@login_required(login_url='login')
+def rapage(request):
+    return render(request, 'frontend/index_ra.html')
+
+@login_required(login_url='login')
+def greenpage(request):
+    return render(request, 'frontend/greenpage.html')
 
 @login_required(login_url='login')
 def home(request):
     return render(request, 'frontend/index.html')
 
-
 @login_required(login_url='login')
 def about(request):
-    return render(request, 'frontend/about.html')
+    return render(request, 'frontend/Xabout.html')
 
 
 def loginPage(request):
