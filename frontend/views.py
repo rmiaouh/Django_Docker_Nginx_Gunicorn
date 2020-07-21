@@ -43,8 +43,8 @@ def rapage(request):
     return render(request, 'frontend/index_ra.html')
 
 @login_required(login_url='login')
-def greenpage(request):
-    return render(request, 'frontend/greenpage.html')
+def wcpage(request):
+    return render(request, 'frontend/index_wc.html')
 
 @login_required(login_url='login')
 def home(request):
