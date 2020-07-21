@@ -10,6 +10,7 @@ urlpatterns = [
     path('blue/', views.bluepage, name="bluepage"),
     path('green/', views.greenpage, name="greenpage"),
     path('ra/', views.rapage, name="rapage"),
+    path('wc/', views.wcpage, name="wcpage"),
     path('login/', views.loginPage, name="login"),
     path('', views.home, name="home"),
     path('about/', views.about, name="about"),
